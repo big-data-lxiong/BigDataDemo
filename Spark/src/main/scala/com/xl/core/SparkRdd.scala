@@ -1,20 +1,21 @@
+package com.xl.core
+
 import org.apache.spark.{SparkConf, SparkContext}
 
-object RDDLearning {
+object SparkRdd {
 
   def main(args: Array[String]): Unit = {
     val conf = new SparkConf().setMaster("local[4]").setAppName("hello RDD")
     val sc = new SparkContext(conf)
     sc.makeRDD(Array(1, 2, 3)).foreach(println)
 
-    val rdd = sc.parallelize(List("coffee panda","happy panda","happiest panda party"))
-    val mapRDD=rdd.map{x=>x.split(" ")}
+    val rdd = sc.parallelize(List("coffee panda", "happy panda", "happiest panda party"))
+    val mapRDD = rdd.map { x => x.split(" ") }
     mapRDD.foreach(println)
 
-    val flatmapRDD=rdd.flatMap{x=>x.split(" ")}
+    val flatmapRDD = rdd.flatMap { x => x.split(" ") }
     flatmapRDD.foreach(println)
     sc.stop()
-
   }
 
 }
